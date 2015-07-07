@@ -1,9 +1,11 @@
 package tennis;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TennisGame1 implements TennisGame {
 
-	private int player1Score = 0;
-	private int player2Score = 0;
+	private Map<String, Integer> scores = new HashMap<String, Integer>();
 	private String player1, player2;
 
 	public TennisGame1(String player1Name, String player2Name) {
@@ -17,14 +19,14 @@ public class TennisGame1 implements TennisGame {
 			throw new IllegalArgumentException("Player names must be unique");
 		}
 		player1 = player1Name;
+		scores.put(player1Name, 0);
 		player2 = player2Name;
+		scores.put(player2Name, 0);
 	}
 
 	public void wonPoint(String playerName) {
-		if (playerName.equals(player1)) {
-			player1Score += 1;
-		} else if (playerName.equals(player2)) {
-			player2Score += 1;
+		if (scores.containsKey(playerName)) {
+			scores.put(playerName, scores.get(playerName) + 1);
 		} else {
 			throw new IllegalArgumentException(playerName + " is not part of this game");
 		}
@@ -33,8 +35,8 @@ public class TennisGame1 implements TennisGame {
 	public String getScore() {
 		String score = "";
 		int tempScore = 0;
-		if (player1Score == player2Score) {
-			switch (player1Score) {
+		if (getPlayer1Score() == getPlayer2Score()) {
+			switch (getPlayer1Score()) {
 			case 0:
 				score = "Love-All";
 				break;
@@ -49,8 +51,8 @@ public class TennisGame1 implements TennisGame {
 				break;
 
 			}
-		} else if (player1Score >= 4 || player2Score >= 4) {
-			int minusResult = player1Score - player2Score;
+		} else if (getPlayer1Score() >= 4 || getPlayer2Score() >= 4) {
+			int minusResult = getPlayer1Score() - getPlayer2Score();
 			if (minusResult == 1)
 				score = "Advantage player1";
 			else if (minusResult == -1)
@@ -62,10 +64,10 @@ public class TennisGame1 implements TennisGame {
 		} else {
 			for (int i = 1; i < 3; i++) {
 				if (i == 1)
-					tempScore = player1Score;
+					tempScore = getPlayer1Score();
 				else {
 					score += "-";
-					tempScore = player2Score;
+					tempScore = getPlayer2Score();
 				}
 				switch (tempScore) {
 				case 0:
@@ -84,5 +86,13 @@ public class TennisGame1 implements TennisGame {
 			}
 		}
 		return score;
+	}
+
+	public int getPlayer1Score() {
+		return scores.get(player1);
+	}
+
+	public int getPlayer2Score() {
+		return scores.get(player2);
 	}
 }

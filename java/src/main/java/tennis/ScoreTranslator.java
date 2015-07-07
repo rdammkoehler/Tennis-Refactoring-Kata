@@ -21,7 +21,6 @@ public class ScoreTranslator {
 	}
 
 	private String getWinningOrAdvantageScore(Points player1Score, Points player2Score) {
-		String score;
 		Map<Integer, String> scores = new HashMap<Integer, String>() {
 			private static final long serialVersionUID = 1L;
 
@@ -46,8 +45,7 @@ public class ScoreTranslator {
 				return score;
 			}
 		};
-		score = scores.get(getScoreOffset(player1Score, player2Score));
-		return score;
+		return scores.get(getScoreOffset(player1Score, player2Score));
 	}
 
 	private int getScoreOffset(Points player1Score, Points player2Score) {

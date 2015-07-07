@@ -16,7 +16,7 @@ public class ScoreTranslator {
 		Points player2Score = scoreKeeper.scoreOfPlayer2();
 		String score = "";
 		if (player1Score == player2Score) {
-			score = getTieScore(player1Score);
+			score = getTieScore();
 		} else if (player1Score.greaterThan(FORTY) || player2Score.greaterThan(FORTY)) {
 			score = getWinningOrAdvantageScore();
 		} else {
@@ -43,8 +43,9 @@ public class ScoreTranslator {
 		return score;
 	}
 
-	private String getTieScore(Points player1Score) {
+	private String getTieScore() {
 		String score;
+		Points player1Score = scoreKeeper.scoreOfPlayer1();
 		if (player1Score.greaterThan(THIRTY)) {
 			score = "Deuce";
 		} else {

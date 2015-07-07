@@ -45,6 +45,10 @@ public class ScoreTranslator {
 		return score;
 	}
 
+	public String translate(ScoreKeeper scoreKeeper) {
+		return translate(scoreKeeper.scoreOfPlayer1(), scoreKeeper.scoreOfPlayer2());
+	}
+
 }
 
 class WinAdvTranslator extends HashMap<Integer, String> {

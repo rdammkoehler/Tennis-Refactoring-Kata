@@ -13,15 +13,9 @@ public class ScoreTranslator {
 				score = player1Score + "-All";
 			}
 		} else if (player1Score.ordinal() > FORTY.ordinal() || player2Score.ordinal() > FORTY.ordinal()) {
-			int minusResult = player1Score.intValue() - player2Score.intValue();
-			if (minusResult == 1)
-				score = "Advantage player1";
-			else if (minusResult == -1)
-				score = "Advantage player2";
-			else if (minusResult >= 2)
-				score = "Win for player1";
-			else
-				score = "Win for player2";
+			String[] scores = { "Win for player2", "Win for player2", "Win for player2", "Advantage player2", "impossible", "Advantage player1", "Win for player1", "Win for player1", "Win for player1" };
+			int scoreOffset = player1Score.intValue() - player2Score.intValue();
+			return scores[(scoreOffset+4)];
 		} else {
 			score = player1Score + "-" + player2Score;
 		}

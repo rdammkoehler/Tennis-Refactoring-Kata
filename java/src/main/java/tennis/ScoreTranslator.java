@@ -14,7 +14,7 @@ public class ScoreTranslator {
 		this.scoreKeeper = scoreKeeper;
 	}
 	
-	public String translate(ScoreKeeper scoreKeeper) {
+	public String translate() {
 		String score = "";
 		if (tied()) {
 			score = getTieScore();

@@ -9,7 +9,9 @@ public class ScoreTranslator {
 
 	private static final WinAdvTranslator WIN_ADV_TRANSLATOR = new WinAdvTranslator();
 
-	public String translate(Points player1Score, Points player2Score) {
+	public String translate(ScoreKeeper scoreKeeper) {
+		Points player1Score = scoreKeeper.scoreOfPlayer1();
+		Points player2Score = scoreKeeper.scoreOfPlayer2();
 		String score = "";
 		if (player1Score == player2Score) {
 			score = getTieScore(player1Score);
@@ -45,9 +47,6 @@ public class ScoreTranslator {
 		return score;
 	}
 
-	public String translate(ScoreKeeper scoreKeeper) {
-		return translate(scoreKeeper.scoreOfPlayer1(), scoreKeeper.scoreOfPlayer2());
-	}
 
 }
 

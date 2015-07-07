@@ -17,7 +17,7 @@ public enum Points {
 		sb.setCharAt(0, Character.toTitleCase(sb.charAt(0)));
 		return sb.toString();
 	}
-	
+
 	public boolean greaterThan(Points that) {
 		return this.compareTo(that) > 0;
 	}

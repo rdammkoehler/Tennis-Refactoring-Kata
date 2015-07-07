@@ -13,15 +13,15 @@ public class ScoreTranslator {
 	public ScoreTranslator(ScoreKeeper scoreKeeper) {
 		this.scoreKeeper = scoreKeeper;
 	}
-	
+
 	private Points getPlayer1Score() {
 		return scoreKeeper.scoreOfPlayer1();
 	}
-	
+
 	private Points getPlayer2Score() {
 		return scoreKeeper.scoreOfPlayer2();
 	}
-	
+
 	public String translate() {
 		String score = "";
 		if (tied()) {

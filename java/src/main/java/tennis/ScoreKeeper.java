@@ -32,7 +32,7 @@ public class ScoreKeeper {
 
 	public void incrementScoreOf(String playerName) {
 		if (scores.containsKey(playerName)) {
-			scores.put(playerName, scores.get(playerName).next() );
+			scores.put(playerName, scores.get(playerName).next());
 		} else {
 			throw new IllegalArgumentException(playerName + " is not part of this game");
 		}

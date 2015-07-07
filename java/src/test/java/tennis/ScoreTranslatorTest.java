@@ -2,7 +2,12 @@ package tennis;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static tennis.Points.*;
+import static tennis.Points.ADD1;
+import static tennis.Points.ADD2;
+import static tennis.Points.FIFTEEN;
+import static tennis.Points.FORTY;
+import static tennis.Points.LOVE;
+import static tennis.Points.THIRTY;
 
 import org.junit.Test;
 

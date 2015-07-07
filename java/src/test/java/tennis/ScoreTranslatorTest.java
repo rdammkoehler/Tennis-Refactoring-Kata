@@ -8,10 +8,20 @@ import org.junit.Test;
 
 public class ScoreTranslatorTest {
 
+	private static final String PLAYER1 = "Agassi";
+	private static final String PLAYER2 = "McEnroe";
+
 	private String translate(Points player1Score, Points player2Score) {
-		return new ScoreTranslator().translate(player1Score, player2Score);
+		ScoreKeeper scoreKeeper = new ScoreKeeper(PLAYER1, PLAYER2);
+		while (player1Score.greaterThan(scoreKeeper.scoreOfPlayer1())) {
+			scoreKeeper.incrementScoreOf(PLAYER1);
+		}
+		while (player2Score.greaterThan(scoreKeeper.scoreOfPlayer2())) {
+			scoreKeeper.incrementScoreOf(PLAYER2);
+		}
+		return new ScoreTranslator().translate(scoreKeeper);
 	}
-	
+
 	@Test
 	public void tieScoreZerosIsLoveAll() {
 		assertThat(translate(LOVE, LOVE), is("Love-All"));

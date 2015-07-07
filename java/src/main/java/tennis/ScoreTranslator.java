@@ -42,7 +42,7 @@ public class ScoreTranslator {
 				}
 			};
 			int scoreOffset = player1Score.intValue() - player2Score.intValue();
-			return scores.get(scoreOffset);
+			score = scores.get(scoreOffset);
 		} else {
 			score = player1Score + "-" + player2Score;
 		}

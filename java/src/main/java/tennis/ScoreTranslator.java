@@ -11,12 +11,12 @@ public class ScoreTranslator {
 	public String translate(Points player1Score, Points player2Score) {
 		String score = "";
 		if (player1Score == player2Score) {
-			if (THIRTY.compareTo(player1Score) < 0) {
+			if (THIRTY.lessThan(player1Score)) {
 				score = "Deuce";
 			} else {
 				score = player1Score + "-All";
 			}
-		} else if (FORTY.compareTo(player1Score) < 0 || FORTY.compareTo(player2Score) < 0 ) {
+		} else if (FORTY.lessThan(player1Score) || FORTY.lessThan(player2Score)) {
 			Map<Integer, String> scores = new HashMap<Integer, String>() {
 				private static final long serialVersionUID = 1L;
 

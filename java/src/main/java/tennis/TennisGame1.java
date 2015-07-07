@@ -33,59 +33,7 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	public String getScore() {
-		String score = "";
-		int tempScore = 0;
-		if (getPlayer1Score() == getPlayer2Score()) {
-			switch (getPlayer1Score()) {
-			case 0:
-				score = "Love-All";
-				break;
-			case 1:
-				score = "Fifteen-All";
-				break;
-			case 2:
-				score = "Thirty-All";
-				break;
-			default:
-				score = "Deuce";
-				break;
-
-			}
-		} else if (getPlayer1Score() >= 4 || getPlayer2Score() >= 4) {
-			int minusResult = getPlayer1Score() - getPlayer2Score();
-			if (minusResult == 1)
-				score = "Advantage player1";
-			else if (minusResult == -1)
-				score = "Advantage player2";
-			else if (minusResult >= 2)
-				score = "Win for player1";
-			else
-				score = "Win for player2";
-		} else {
-			for (int i = 1; i < 3; i++) {
-				if (i == 1)
-					tempScore = getPlayer1Score();
-				else {
-					score += "-";
-					tempScore = getPlayer2Score();
-				}
-				switch (tempScore) {
-				case 0:
-					score += "Love";
-					break;
-				case 1:
-					score += "Fifteen";
-					break;
-				case 2:
-					score += "Thirty";
-					break;
-				case 3:
-					score += "Forty";
-					break;
-				}
-			}
-		}
-		return score;
+		return new ScoreTranslator().translate(getPlayer1Score(), getPlayer2Score());
 	}
 
 	public int getPlayer1Score() {

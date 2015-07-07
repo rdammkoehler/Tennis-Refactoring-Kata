@@ -58,7 +58,7 @@ class WinAdvTranslator extends HashMap<Integer, String> {
 
 	public String translate(Integer offset) {
 		String score;
-		if (containsKey(offset)) {
+		if (super.containsKey(offset)) {
 			score = super.get(offset);
 		} else {
 			if (offset < 0) {

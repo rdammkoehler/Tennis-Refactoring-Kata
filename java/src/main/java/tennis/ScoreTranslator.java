@@ -4,9 +4,10 @@ import static tennis.Points.FORTY;
 import static tennis.Points.THIRTY;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class ScoreTranslator {
+
+	private static final WinAdvTranslator WIN_ADV_TRANSLATOR = new MappedWinAdvTranslator();
 
 	public String translate(Points player1Score, Points player2Score) {
 		String score = "";
@@ -21,31 +22,7 @@ public class ScoreTranslator {
 	}
 
 	private String getWinningOrAdvantageScore(Points player1Score, Points player2Score) {
-		Map<Integer, String> scores = new HashMap<Integer, String>() {
-			private static final long serialVersionUID = 1L;
-
-			{
-				put(-1, "Advantage player2");
-				put(0, "impossible");
-				put(1, "Advantage player1");
-			}
-
-			@Override
-			public String get(Object offset) {
-				String score;
-				if (containsKey(offset)) {
-					score = super.get(offset);
-				} else {
-					if (((Integer) offset).intValue() < 0) {
-						score = "Win for player2";
-					} else {
-						score = "Win for player1";
-					}
-				}
-				return score;
-			}
-		};
-		return scores.get(getScoreOffset(player1Score, player2Score));
+		return WIN_ADV_TRANSLATOR.translate(getScoreOffset(player1Score, player2Score));
 	}
 
 	private int getScoreOffset(Points player1Score, Points player2Score) {
@@ -64,6 +41,35 @@ public class ScoreTranslator {
 			score = "Deuce";
 		} else {
 			score = player1Score + "-All";
+		}
+		return score;
+	}
+
+}
+
+interface WinAdvTranslator {
+	String translate(Integer offset);
+}
+
+class MappedWinAdvTranslator extends HashMap<Integer, String>implements WinAdvTranslator {
+	private static final long serialVersionUID = 1L;
+
+	{
+		put(-1, "Advantage player2");
+		put(0, "impossible");
+		put(1, "Advantage player1");
+	}
+
+	public String translate(Integer offset) {
+		String score;
+		if (containsKey(offset)) {
+			score = super.get(offset);
+		} else {
+			if (offset < 0) {
+				score = "Win for player2";
+			} else {
+				score = "Win for player1";
+			}
 		}
 		return score;
 	}

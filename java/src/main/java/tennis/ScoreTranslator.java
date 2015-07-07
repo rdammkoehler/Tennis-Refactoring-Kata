@@ -20,7 +20,7 @@ public class ScoreTranslator {
 		} else if (player1Score.greaterThan(FORTY) || player2Score.greaterThan(FORTY)) {
 			score = getWinningOrAdvantageScore();
 		} else {
-			score = getInGameScore(player1Score, player2Score);
+			score = getInGameScore();
 		}
 		return score;
 	}
@@ -35,8 +35,10 @@ public class ScoreTranslator {
 		return player1Score.intValue() - player2Score.intValue();
 	}
 
-	private String getInGameScore(Points player1Score, Points player2Score) {
+	private String getInGameScore() {
 		String score;
+		Points player1Score = scoreKeeper.scoreOfPlayer1();
+		Points player2Score = scoreKeeper.scoreOfPlayer2();
 		score = player1Score + "-" + player2Score;
 		return score;
 	}

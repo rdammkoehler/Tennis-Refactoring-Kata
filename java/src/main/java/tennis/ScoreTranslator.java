@@ -23,16 +23,20 @@ public class ScoreTranslator {
 		return score;
 	}
 
+	private Points getPlayer1Score() {
+		return scoreKeeper.scoreOfPlayer1();
+	}
+
+	private Points getPlayer2Score() {
+		return scoreKeeper.scoreOfPlayer2();
+	}
+
 	private boolean winOrAdvantage() {
-		Points player1Score = scoreKeeper.scoreOfPlayer1();
-		Points player2Score = scoreKeeper.scoreOfPlayer2();
-		return player1Score.greaterThan(FORTY) || player2Score.greaterThan(FORTY);
+		return getPlayer1Score().greaterThan(FORTY) || getPlayer2Score().greaterThan(FORTY);
 	}
 
 	private boolean tied() {
-		Points player1Score = scoreKeeper.scoreOfPlayer1();
-		Points player2Score = scoreKeeper.scoreOfPlayer2();
-		return player1Score == player2Score;
+		return getPlayer1Score() == getPlayer2Score();
 	}
 
 	private String getWinningOrAdvantageScore() {
@@ -40,26 +44,21 @@ public class ScoreTranslator {
 	}
 
 	private int getScoreOffset() {
-		Points player1Score = scoreKeeper.scoreOfPlayer1();
-		Points player2Score = scoreKeeper.scoreOfPlayer2();
-		return player1Score.intValue() - player2Score.intValue();
+		return getPlayer1Score().intValue() - getPlayer2Score().intValue();
 	}
 
 	private String getInGameScore() {
 		String score;
-		Points player1Score = scoreKeeper.scoreOfPlayer1();
-		Points player2Score = scoreKeeper.scoreOfPlayer2();
-		score = player1Score + "-" + player2Score;
+		score = getPlayer1Score() + "-" + getPlayer2Score();
 		return score;
 	}
 
 	private String getTieScore() {
 		String score;
-		Points player1Score = scoreKeeper.scoreOfPlayer1();
-		if (player1Score.greaterThan(THIRTY)) {
+		if (getPlayer1Score().greaterThan(THIRTY)) {
 			score = "Deuce";
 		} else {
-			score = player1Score + "-All";
+			score = getPlayer1Score() + "-All";
 		}
 		return score;
 	}

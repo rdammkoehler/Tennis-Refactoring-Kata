@@ -8,8 +8,10 @@ import java.util.HashMap;
 public class ScoreTranslator {
 
 	private static final WinAdvTranslator WIN_ADV_TRANSLATOR = new WinAdvTranslator();
-
+	private ScoreKeeper scoreKeeper;
+	
 	public String translate(ScoreKeeper scoreKeeper) {
+		this.scoreKeeper = scoreKeeper;
 		Points player1Score = scoreKeeper.scoreOfPlayer1();
 		Points player2Score = scoreKeeper.scoreOfPlayer2();
 		String score = "";
@@ -24,10 +26,12 @@ public class ScoreTranslator {
 	}
 
 	private String getWinningOrAdvantageScore(Points player1Score, Points player2Score) {
-		return WIN_ADV_TRANSLATOR.translate(getScoreOffset(player1Score, player2Score));
+		return WIN_ADV_TRANSLATOR.translate(getScoreOffset());
 	}
 
-	private int getScoreOffset(Points player1Score, Points player2Score) {
+	private int getScoreOffset() {
+		Points player1Score = scoreKeeper.scoreOfPlayer1();
+		Points player2Score = scoreKeeper.scoreOfPlayer2();
 		return player1Score.intValue() - player2Score.intValue();
 	}
 

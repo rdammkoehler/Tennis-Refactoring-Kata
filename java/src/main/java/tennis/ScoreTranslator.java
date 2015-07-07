@@ -9,20 +9,30 @@ public class ScoreTranslator {
 
 	private static final WinAdvTranslator WIN_ADV_TRANSLATOR = new WinAdvTranslator();
 	private ScoreKeeper scoreKeeper;
-	
+
 	public String translate(ScoreKeeper scoreKeeper) {
 		this.scoreKeeper = scoreKeeper;
-		Points player1Score = scoreKeeper.scoreOfPlayer1();
-		Points player2Score = scoreKeeper.scoreOfPlayer2();
 		String score = "";
-		if (player1Score == player2Score) {
+		if (tied()) {
 			score = getTieScore();
-		} else if (player1Score.greaterThan(FORTY) || player2Score.greaterThan(FORTY)) {
+		} else if (winOrAdvantage()) {
 			score = getWinningOrAdvantageScore();
 		} else {
 			score = getInGameScore();
 		}
 		return score;
+	}
+
+	private boolean winOrAdvantage() {
+		Points player1Score = scoreKeeper.scoreOfPlayer1();
+		Points player2Score = scoreKeeper.scoreOfPlayer2();
+		return player1Score.greaterThan(FORTY) || player2Score.greaterThan(FORTY);
+	}
+
+	private boolean tied() {
+		Points player1Score = scoreKeeper.scoreOfPlayer1();
+		Points player2Score = scoreKeeper.scoreOfPlayer2();
+		return player1Score == player2Score;
 	}
 
 	private String getWinningOrAdvantageScore() {
@@ -53,7 +63,6 @@ public class ScoreTranslator {
 		}
 		return score;
 	}
-
 
 }
 

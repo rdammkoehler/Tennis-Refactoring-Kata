@@ -1,6 +1,5 @@
 package tennis;
 
-import static tennis.Points.ADD1;
 import static tennis.Points.FORTY;
 
 public class ScoreTranslator {
@@ -13,7 +12,7 @@ public class ScoreTranslator {
 			} else {
 				score = player1Score + "-All";
 			}
-		} else if (player1Score.ordinal() >= ADD1.ordinal() || player2Score.ordinal() >= ADD1.ordinal()) {
+		} else if (player1Score.ordinal() > FORTY.ordinal() || player2Score.ordinal() > FORTY.ordinal()) {
 			int minusResult = player1Score.intValue() - player2Score.intValue();
 			if (minusResult == 1)
 				score = "Advantage player1";

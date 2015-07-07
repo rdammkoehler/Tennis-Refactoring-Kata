@@ -9,6 +9,7 @@ public class TennisGame1Test {
 
 	private static final String PLAYER_MCENRO = "John McEnro";
 	private static final String PLAYER_AGASSI = "Andre Agassi";
+	private TennisGame game = new TennisGame1(PLAYER_AGASSI, PLAYER_MCENRO);
 
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldRejectSinglePlayerGames() {
@@ -27,7 +28,6 @@ public class TennisGame1Test {
 
 	@Test
 	public void playerOneAndPlayerTwoCanBeDistinguished() {
-		TennisGame game = new TennisGame1(PLAYER_AGASSI, PLAYER_MCENRO);
 		game.wonPoint(PLAYER_AGASSI);
 		game.wonPoint(PLAYER_AGASSI);
 		game.wonPoint(PLAYER_AGASSI);
@@ -37,7 +37,6 @@ public class TennisGame1Test {
 
 	@Test
 	public void playerTwoAndPlayerOneCanBeDistinguished() {
-		TennisGame game = new TennisGame1(PLAYER_AGASSI, PLAYER_MCENRO);
 		game.wonPoint(PLAYER_MCENRO);
 		game.wonPoint(PLAYER_MCENRO);
 		game.wonPoint(PLAYER_MCENRO);
@@ -47,7 +46,6 @@ public class TennisGame1Test {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void unknownPlayersCannotScore() {
-		TennisGame game = new TennisGame1(PLAYER_AGASSI, PLAYER_MCENRO);
 		game.wonPoint("John Conners");
 	}
 }

@@ -4,7 +4,7 @@ public class TennisGame1 implements TennisGame {
 
 	private int player1Score = 0;
 	private int player2Score = 0;
-	private String player1;
+	private String player1, player2;
 
 	public TennisGame1(String player1Name, String player2Name) {
 		if ( player1Name == null ) {
@@ -17,13 +17,16 @@ public class TennisGame1 implements TennisGame {
 			throw new IllegalArgumentException("Player names must be unique");
 		}
 		player1 = player1Name;
+		player2 = player2Name;
 	}
 
 	public void wonPoint(String playerName) {
 		if (playerName.equals(player1))
 			player1Score += 1;
-		else
+		else if ( playerName.equals(player2))
 			player2Score += 1;
+		else
+			throw new IllegalArgumentException(playerName + " is not part of this game");
 	}
 
 	public String getScore() {

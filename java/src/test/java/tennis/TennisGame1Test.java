@@ -24,7 +24,7 @@ public class TennisGame1Test {
 	public void shouldRejectNullPlayerNameTwo() {
 		new TennisGame1(PLAYER_AGASSI, null);
 	}
-	
+
 	@Test
 	public void playerOneAndPlayerTwoCanBeDistinguished() {
 		TennisGame game = new TennisGame1(PLAYER_AGASSI, PLAYER_MCENRO);
@@ -34,7 +34,7 @@ public class TennisGame1Test {
 		game.wonPoint(PLAYER_AGASSI);
 		assertThat(game.getScore(), is("Win for player1"));
 	}
-	
+
 	@Test
 	public void playerTwoAndPlayerOneCanBeDistinguished() {
 		TennisGame game = new TennisGame1(PLAYER_AGASSI, PLAYER_MCENRO);
@@ -43,5 +43,11 @@ public class TennisGame1Test {
 		game.wonPoint(PLAYER_MCENRO);
 		game.wonPoint(PLAYER_MCENRO);
 		assertThat(game.getScore(), is("Win for player2"));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void unknownPlayersCannotScore() {
+		TennisGame game = new TennisGame1(PLAYER_AGASSI, PLAYER_MCENRO);
+		game.wonPoint("John Conners");
 	}
 }

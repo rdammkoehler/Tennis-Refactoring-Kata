@@ -23,4 +23,10 @@ public class ScoreTranslatorTest {
 	public void tieScoreThirtyIsThirtyAll() {
 		assertThat(translator.translate(2, 2), is("Thirty-All"));
 	}
+	
+	@Test
+	public void tieScoreFortyIsDeuce() {
+		assertThat(translator.translate(3, 3), is("Deuce"));
+	}
+
 }

@@ -1,3 +1,4 @@
+package tennis;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
@@ -7,6 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+
+import tennis.TennisGame;
+import tennis.TennisGame1;
+import tennis.TennisGame2;
+import tennis.TennisGame3;
 
 @RunWith(Parameterized.class)
 public class TennisTest {

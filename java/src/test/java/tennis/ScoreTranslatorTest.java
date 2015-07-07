@@ -12,7 +12,7 @@ public class ScoreTranslatorTest {
 
 	@Test
 	public void tieScoreZerosIsLoveAll() {
-		assertThat(translator.translate(ZERO, ZERO), is("Love-All"));
+		assertThat(translator.translate(LOVE, LOVE), is("Love-All"));
 	}
 
 	@Test

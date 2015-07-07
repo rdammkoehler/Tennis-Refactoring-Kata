@@ -1,6 +1,6 @@
 package tennis;
 
-import static tennis.Points.ZERO;
+import static tennis.Points.LOVE;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +13,9 @@ public class ScoreKeeper {
 	public ScoreKeeper(String player1Name, String player2Name) {
 		validateInput(player1Name, player2Name);
 		player1 = player1Name;
-		scores.put(player1Name, ZERO);
+		scores.put(player1Name, LOVE);
 		player2 = player2Name;
-		scores.put(player2Name, ZERO);
+		scores.put(player2Name, LOVE);
 	}
 
 	private void validateInput(String player1Name, String player2Name) {

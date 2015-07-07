@@ -1,5 +1,8 @@
 package tennis;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 
 public class TennisGame1Test {
@@ -19,5 +22,15 @@ public class TennisGame1Test {
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldRejectNullPlayerNameTwo() {
 		new TennisGame1(PLAYER_NAME, null);
+	}
+	
+	@Test
+	public void playerOneAndPlayerTwoCanBeDistinguished() {
+		TennisGame game = new TennisGame1(PLAYER_NAME, "John McEnro");
+		game.wonPoint(PLAYER_NAME);
+		game.wonPoint(PLAYER_NAME);
+		game.wonPoint(PLAYER_NAME);
+		game.wonPoint(PLAYER_NAME);
+		assertThat(game.getScore(), is("Win for player1"));
 	}
 }

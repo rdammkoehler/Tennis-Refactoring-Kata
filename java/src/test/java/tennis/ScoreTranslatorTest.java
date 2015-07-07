@@ -8,75 +8,77 @@ import org.junit.Test;
 
 public class ScoreTranslatorTest {
 
-	private ScoreTranslator translator = new ScoreTranslator();
-
+	private String translate(Points player1Score, Points player2Score) {
+		return new ScoreTranslator().translate(player1Score, player2Score);
+	}
+	
 	@Test
 	public void tieScoreZerosIsLoveAll() {
-		assertThat(translator.translate(LOVE, LOVE), is("Love-All"));
+		assertThat(translate(LOVE, LOVE), is("Love-All"));
 	}
 
 	@Test
 	public void tieScoreFifteenIsFifteenAll() {
-		assertThat(translator.translate(FIFTEEN, FIFTEEN), is("Fifteen-All"));
+		assertThat(translate(FIFTEEN, FIFTEEN), is("Fifteen-All"));
 	}
 
 	@Test
 	public void tieScoreThirtyIsThirtyAll() {
-		assertThat(translator.translate(THIRTY, THIRTY), is("Thirty-All"));
+		assertThat(translate(THIRTY, THIRTY), is("Thirty-All"));
 	}
 
 	@Test
 	public void tieScoreFortyIsDeuce() {
-		assertThat(translator.translate(FORTY, FORTY), is("Deuce"));
+		assertThat(translate(FORTY, FORTY), is("Deuce"));
 	}
 
 	@Test
 	public void tieScoreFivePointsEachIsDeuce() {
-		assertThat(translator.translate(ADD1, ADD1), is("Deuce"));
+		assertThat(translate(ADD1, ADD1), is("Deuce"));
 	}
 
 	@Test
 	public void player1WinsByTwoIsWinForPlayer1() {
-		assertThat(translator.translate(ADD1, THIRTY), is("Win for player1"));
+		assertThat(translate(ADD1, THIRTY), is("Win for player1"));
 	}
 
 	@Test
 	public void player1WinsByThreeIsWinForPlayer1() {
-		assertThat(translator.translate(ADD1, FIFTEEN), is("Win for player1"));
+		assertThat(translate(ADD1, FIFTEEN), is("Win for player1"));
 	}
 
 	@Test
 	public void player1WinsByFourIsWinForPlayer1() {
-		assertThat(translator.translate(ADD1, LOVE), is("Win for player1"));
+		assertThat(translate(ADD1, LOVE), is("Win for player1"));
 	}
 
 	@Test
 	public void player1WinsImpossibyByFiveIsWinForPlayer1() {
-		assertThat(translator.translate(ADD2, LOVE), is("Win for player1"));
+		assertThat(translate(ADD2, LOVE), is("Win for player1"));
 	}
 
 	@Test
 	public void player1LosesImpossiblyByFiveIsWinForPlayer2() {
-		assertThat(translator.translate(LOVE, ADD2), is("Win for player2"));
+		assertThat(translate(LOVE, ADD2), is("Win for player2"));
 	}
 
 	@Test
 	public void player1AheadBy1AfterDeuceIsAdvantagePlayer1() {
-		assertThat(translator.translate(ADD1, FORTY), is("Advantage player1"));
+		assertThat(translate(ADD1, FORTY), is("Advantage player1"));
 	}
 
 	@Test
 	public void player2AheadBy1AfterDeuceIsAdvantagePlayer2() {
-		assertThat(translator.translate(FORTY, ADD1), is("Advantage player2"));
+		assertThat(translate(FORTY, ADD1), is("Advantage player2"));
 	}
 
 	@Test
 	public void player1AheadBy2AfterDeuceIsWinForPlayer1() {
-		assertThat(translator.translate(ADD2, FORTY), is("Win for player1"));
+		assertThat(translate(ADD2, FORTY), is("Win for player1"));
 	}
 
 	@Test
 	public void player2AheadBy2AfterDeuceIsWinforPlayer2() {
-		assertThat(translator.translate(FORTY, ADD2), is("Win for player2"));
+		assertThat(translate(FORTY, ADD2), is("Win for player2"));
 	}
 }

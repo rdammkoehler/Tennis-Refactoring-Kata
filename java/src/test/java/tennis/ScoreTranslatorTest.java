@@ -49,9 +49,14 @@ public class ScoreTranslatorTest {
 	public void player1WinsByFourIsWinForPlayer1() {
 		assertThat(translator.translate(ADD1, LOVE), is("Win for player1"));
 	}
-	
+
 	@Test
 	public void player1WinsImpossibyByFiveIsWinForPlayer1() {
 		assertThat(translator.translate(ADD2, LOVE), is("Win for player1"));
+	}
+
+	@Test
+	public void player1LosesImpossiblyByFiveIsWinForPlayer2() {
+		assertThat(translator.translate(LOVE, ADD2), is("Win for player2"));
 	}
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class ScoreTranslator {
 
-	private static final WinAdvTranslator WIN_ADV_TRANSLATOR = new MappedWinAdvTranslator();
+	private static final WinAdvTranslator WIN_ADV_TRANSLATOR = new WinAdvTranslator();
 
 	public String translate(Points player1Score, Points player2Score) {
 		String score = "";
@@ -47,11 +47,7 @@ public class ScoreTranslator {
 
 }
 
-interface WinAdvTranslator {
-	String translate(Integer offset);
-}
-
-class MappedWinAdvTranslator extends HashMap<Integer, String>implements WinAdvTranslator {
+class WinAdvTranslator extends HashMap<Integer, String> {
 	private static final long serialVersionUID = 1L;
 
 	{

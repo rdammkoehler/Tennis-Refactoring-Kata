@@ -19,7 +19,7 @@ public class ScoreTranslatorTest {
 		while (player2Score.greaterThan(scoreKeeper.scoreOfPlayer2())) {
 			scoreKeeper.incrementScoreOf(PLAYER2);
 		}
-		return new ScoreTranslator().translate(scoreKeeper);
+		return new ScoreTranslator(scoreKeeper).translate(scoreKeeper);
 	}
 
 	@Test

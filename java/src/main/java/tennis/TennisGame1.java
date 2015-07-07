@@ -13,6 +13,6 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	public String getScore() {
-		return new ScoreTranslator().translate(scoreKeeper);
+		return new ScoreTranslator(scoreKeeper).translate(scoreKeeper);
 	}
 }

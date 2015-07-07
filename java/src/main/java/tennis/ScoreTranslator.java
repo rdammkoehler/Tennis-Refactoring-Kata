@@ -10,6 +10,10 @@ public class ScoreTranslator {
 	private static final WinAdvTranslator WIN_ADV_TRANSLATOR = new WinAdvTranslator();
 	private ScoreKeeper scoreKeeper;
 
+	public ScoreTranslator(ScoreKeeper scoreKeeper) {
+		this.scoreKeeper = scoreKeeper;
+	}
+	
 	public String translate(ScoreKeeper scoreKeeper) {
 		this.scoreKeeper = scoreKeeper;
 		String score = "";

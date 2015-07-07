@@ -10,7 +10,7 @@ public class TennisGame1 implements TennisGame {
 			throw new IllegalArgumentException("Player One must have a proper name");
 		}
 		if ( player2Name == null ) {
-			throw new IllegalArgumentException("Player One must have a proper name");
+			throw new IllegalArgumentException("Player Two must have a proper name");
 		}
 		if ( player1Name.equals(player2Name) ) {
 			throw new IllegalArgumentException("Player names must be unique");

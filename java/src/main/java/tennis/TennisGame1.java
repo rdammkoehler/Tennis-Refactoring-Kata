@@ -7,13 +7,13 @@ public class TennisGame1 implements TennisGame {
 	private String player1, player2;
 
 	public TennisGame1(String player1Name, String player2Name) {
-		if ( player1Name == null ) {
+		if (player1Name == null) {
 			throw new IllegalArgumentException("Player One must have a proper name");
 		}
-		if ( player2Name == null ) {
+		if (player2Name == null) {
 			throw new IllegalArgumentException("Player Two must have a proper name");
 		}
-		if ( player1Name.equals(player2Name) ) {
+		if (player1Name.equals(player2Name)) {
 			throw new IllegalArgumentException("Player names must be unique");
 		}
 		player1 = player1Name;
@@ -21,12 +21,13 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	public void wonPoint(String playerName) {
-		if (playerName.equals(player1))
+		if (playerName.equals(player1)) {
 			player1Score += 1;
-		else if ( playerName.equals(player2))
+		} else if (playerName.equals(player2)) {
 			player2Score += 1;
-		else
+		} else {
 			throw new IllegalArgumentException(playerName + " is not part of this game");
+		}
 	}
 
 	public String getScore() {

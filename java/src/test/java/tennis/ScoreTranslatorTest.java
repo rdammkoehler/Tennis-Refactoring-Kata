@@ -2,6 +2,7 @@ package tennis;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static tennis.Points.*;
 
 import org.junit.Test;
 
@@ -11,22 +12,22 @@ public class ScoreTranslatorTest {
 
 	@Test
 	public void tieScoreZerosIsLoveAll() {
-		assertThat(translator.translate(0, 0), is("Love-All"));
+		assertThat(translator.translate(ZERO, ZERO), is("Love-All"));
 	}
 
 	@Test
 	public void tieScoreFifteenIsFifteenAll() {
-		assertThat(translator.translate(1, 1), is("Fifteen-All"));
+		assertThat(translator.translate(FIFTEEN, FIFTEEN), is("Fifteen-All"));
 	}
 
 	@Test
 	public void tieScoreThirtyIsThirtyAll() {
-		assertThat(translator.translate(2, 2), is("Thirty-All"));
+		assertThat(translator.translate(THIRTY, THIRTY), is("Thirty-All"));
 	}
-	
+
 	@Test
 	public void tieScoreFortyIsDeuce() {
-		assertThat(translator.translate(3, 3), is("Deuce"));
+		assertThat(translator.translate(FORTY, FORTY), is("Deuce"));
 	}
 
 }

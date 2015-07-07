@@ -2,6 +2,10 @@ package tennis;
 
 public class ScoreTranslator {
 
+	public String translate(Points player1Score, Points player2Score) {
+		return translate(player1Score.intValue(), player2Score.intValue());
+	}
+
 	public String translate(int player1Score, int player2Score) {
 		String score = "";
 		int tempScore = 0;

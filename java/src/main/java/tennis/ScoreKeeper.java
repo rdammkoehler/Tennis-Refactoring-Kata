@@ -9,6 +9,14 @@ public class ScoreKeeper {
 	private String player1, player2;
 
 	public ScoreKeeper(String player1Name, String player2Name) {
+		validateInput(player1Name, player2Name);
+		player1 = player1Name;
+		scores.put(player1Name, 0);
+		player2 = player2Name;
+		scores.put(player2Name, 0);
+	}
+
+	private void validateInput(String player1Name, String player2Name) {
 		if (player1Name == null) {
 			throw new IllegalArgumentException("Player One must have a proper name");
 		}
@@ -18,10 +26,6 @@ public class ScoreKeeper {
 		if (player1Name.equals(player2Name)) {
 			throw new IllegalArgumentException("Player names must be unique");
 		}
-		player1 = player1Name;
-		scores.put(player1Name, 0);
-		player2 = player2Name;
-		scores.put(player2Name, 0);
 	}
 
 	public void incrementScoreOf(String playerName) {

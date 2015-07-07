@@ -30,4 +30,13 @@ public class ScoreTranslatorTest {
 		assertThat(translator.translate(FORTY, FORTY), is("Deuce"));
 	}
 
+	@Test
+	public void tieScoreFivePointsEachIsDeuce() {
+		assertThat(translator.translate(ADD1, ADD1), is("Deuce"));
+	}
+	
+	@Test
+	public void player1WinsByTwoIsWinForPlayer1() {
+		assertThat(translator.translate(ADD1, THIRTY), is("Win for player1"));
+	}
 }

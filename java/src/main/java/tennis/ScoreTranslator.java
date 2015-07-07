@@ -16,7 +16,7 @@ public class ScoreTranslator {
 			} else {
 				score = player1Score + "-All";
 			}
-		} else if (player1Score.ordinal() > FORTY.ordinal() || player2Score.ordinal() > FORTY.ordinal()) {
+		} else if (FORTY.compareTo(player1Score) < 0 || FORTY.compareTo(player2Score) < 0 ) {
 			Map<Integer, String> scores = new HashMap<Integer, String>() {
 				private static final long serialVersionUID = 1L;
 

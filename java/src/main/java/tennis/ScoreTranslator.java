@@ -1,6 +1,7 @@
 package tennis;
 
 import static tennis.Points.FORTY;
+import static tennis.Points.THIRTY;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,7 @@ public class ScoreTranslator {
 	public String translate(Points player1Score, Points player2Score) {
 		String score = "";
 		if (player1Score == player2Score) {
-			if (player1Score.ordinal() >= FORTY.ordinal()) {
+			if (player1Score.ordinal() > THIRTY.ordinal()) {
 				score = "Deuce";
 			} else {
 				score = player1Score + "-All";

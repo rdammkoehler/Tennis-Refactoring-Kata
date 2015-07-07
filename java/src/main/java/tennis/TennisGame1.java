@@ -8,6 +8,9 @@ public class TennisGame1 implements TennisGame {
 	private String player2Name;
 
 	public TennisGame1(String player1Name, String player2Name) {
+		if ( player1Name == null ) {
+			throw new IllegalArgumentException("Player One must have a proper name");
+		}
 		if ( player1Name.equals(player2Name) ) {
 			throw new IllegalArgumentException("Player names must be unique");
 		}

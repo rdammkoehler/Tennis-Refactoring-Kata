@@ -8,4 +8,9 @@ public class TennisGame1Test {
 	public void shouldRejectSinglePlayerGames() {
 		new TennisGame1("Andre Agassi", "Andre Agassi");
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void shouldRejectNullPlayerNameOne() {
+		new TennisGame1(null,"Andre Agassi");
+	}
 }

@@ -18,14 +18,14 @@ public class ScoreTranslator {
 		if (player1Score == player2Score) {
 			score = getTieScore(player1Score);
 		} else if (player1Score.greaterThan(FORTY) || player2Score.greaterThan(FORTY)) {
-			score = getWinningOrAdvantageScore(player1Score, player2Score);
+			score = getWinningOrAdvantageScore();
 		} else {
 			score = getInGameScore(player1Score, player2Score);
 		}
 		return score;
 	}
 
-	private String getWinningOrAdvantageScore(Points player1Score, Points player2Score) {
+	private String getWinningOrAdvantageScore() {
 		return WIN_ADV_TRANSLATOR.translate(getScoreOffset());
 	}
 

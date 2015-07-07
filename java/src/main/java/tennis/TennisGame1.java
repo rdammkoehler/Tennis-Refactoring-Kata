@@ -33,14 +33,6 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	public String getScore() {
-		return new ScoreTranslator().translate(getPlayer1Score(), getPlayer2Score());
-	}
-
-	public int getPlayer1Score() {
-		return scores.get(player1);
-	}
-
-	public int getPlayer2Score() {
-		return scores.get(player2);
+		return new ScoreTranslator().translate(scores.get(player1), scores.get(player2));
 	}
 }

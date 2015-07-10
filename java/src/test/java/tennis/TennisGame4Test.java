@@ -10,15 +10,22 @@ import org.junit.Test;
 
 public class TennisGame4Test {
 
+	private static final int FORTY = 3;
+	private static final int THIRTY = 2;
+	private static final int LOVE = 0;
+	private static final int FIFTEEN = 1;
 	private static final String PLAYERNAME_JOHN_CONNERS = "John Conners";
-
 	private static final String PLAYERNAME_JOHN_MCENROE = "John McEnroe";
-
 	private static final String PLAYERNAME_ANDRE_AGASSI = "Andre Agassi";
 
 	private TennisGame4 game;
 
-	private void addPointsToScore(String player, int pts) {
+	private void makeGameScore(int player1score, int player2score) {
+		addPointsToPlayersScore(PLAYERNAME_ANDRE_AGASSI, player1score);
+		addPointsToPlayersScore(PLAYERNAME_JOHN_MCENROE, player2score);
+	}
+
+	private void addPointsToPlayersScore(String player, int pts) {
 		for (int count = 0; count < pts; count++) {
 			game.wonPoint(player);
 		}
@@ -35,7 +42,7 @@ public class TennisGame4Test {
 
 	@Test
 	public void wonPointAddsPointToPlayerByName() {
-		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
+		makeGameScore(FIFTEEN, LOVE);
 		assertThat(scoreString(), is("Fifteen"));
 	}
 
@@ -51,29 +58,26 @@ public class TennisGame4Test {
 
 	@Test
 	public void playerWhoScoresTwiceHasThirtyPoints() {
-		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 2);
+		makeGameScore(THIRTY, LOVE);
 		assertThat(scoreString(), is("Thirty"));
 	}
 
 	@Test
 	public void playerWhoScoresThreeHasFortyPoints() {
-		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 3);
+		makeGameScore(FORTY, LOVE);
 		assertThat(scoreString(), is("Forty"));
 	}
 
 	@Test
 	public void moreThanOnePlayerCanScore() {
-		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
-		addPointsToScore(PLAYERNAME_JOHN_MCENROE, 1);
+		makeGameScore(FIFTEEN, FIFTEEN);
 		assertThat(scoreString(), is("Fifteen"));
 		assertThat(game.getCurrentPoints(PLAYERNAME_JOHN_MCENROE).toString(), is("Fifteen"));
 	}
 
 	@Test(expected = TennisGame4.ScoringException.class)
 	public void threePlayersCannotPlay() {
-		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
-		addPointsToScore(PLAYERNAME_JOHN_MCENROE, 1);
-		addPointsToScore(PLAYERNAME_JOHN_CONNERS, 1);
+		addPointsToPlayersScore(PLAYERNAME_JOHN_CONNERS, 1);
 	}
 
 	@Test(expected = TennisGame4.GameConfigurationException.class)
@@ -98,21 +102,19 @@ public class TennisGame4Test {
 
 	@Test
 	public void player1ScoresOnceAndScoreIsFifteenLove() {
-		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
+		makeGameScore(FIFTEEN, LOVE);
 		assertThat(game.getScore(), is("Fifteen-Love"));
 	}
 
 	@Test
 	public void eachPlayerScoresAndScoreIsFifteenAll() {
-		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
-		addPointsToScore(PLAYERNAME_JOHN_MCENROE, 1);
+		makeGameScore(FIFTEEN, FIFTEEN);
 		assertThat(game.getScore(), is("Fifteen-All"));
 	}
 
 	@Test
 	public void fortyAllIsDeuce() {
-		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 3);
-		addPointsToScore(PLAYERNAME_JOHN_MCENROE, 3);
+		makeGameScore(FORTY, FORTY);
 		assertThat(game.getScore(), is("Deuce"));
 	}
 }

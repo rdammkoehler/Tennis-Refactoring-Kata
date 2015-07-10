@@ -10,6 +10,8 @@ import org.junit.Test;
 
 public class TennisGame4Test {
 
+	private static final String PLAYERNAME_JOHN_MCENROE = "John McEnroe";
+
 	private static final String PLAYERNAME_ANDRE_AGASSI = "Andre Agassi";
 
 	private TennisGame4 game;
@@ -52,5 +54,13 @@ public class TennisGame4Test {
 	public void playerWhoScoresThreeHasFortyPoints() {
 		addPointsToScore(3);
 		assertThat(scoreString(), is("Forty"));
+	}
+	
+	@Test
+	public void moreThanOnePlayerCanScore() {
+		game.wonPoint(PLAYERNAME_ANDRE_AGASSI);
+		game.wonPoint(PLAYERNAME_JOHN_MCENROE);
+		assertThat(scoreString(), is("Fifteen"));
+		assertThat(game.getCurrentPoints(PLAYERNAME_JOHN_MCENROE).toString(), is("Fifteen"));
 	}
 }

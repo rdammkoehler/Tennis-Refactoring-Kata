@@ -78,7 +78,7 @@ public class TennisGame4 implements TennisGame {
 		String scoreString;
 		if (playerOneScore() > 3 && (playerOneScore() - playerTwoScore()) > 1) {
 			scoreString = "Win for player1";
-		} else if (playerTwoScore() == 4 && playerOneScore() < 3) {
+		} else if (playerTwoScore() > 3 && (playerTwoScore() - playerOneScore()) > 1) {
 			scoreString = "Win for player2";
 		} else {
 			if (playerOneScore() == playerTwoScore()) {

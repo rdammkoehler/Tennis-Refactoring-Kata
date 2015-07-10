@@ -80,4 +80,9 @@ public class TennisGame4Test {
 	public void playerNamesMustBeUnique() {
 		new TennisGame4(PLAYERNAME_ANDRE_AGASSI, PLAYERNAME_ANDRE_AGASSI);
 	}
+	
+	@Test(expected=TennisGame4.GameConfigurationException.class)
+	public void player1CannotBeNull() {
+		new TennisGame4(null, PLAYERNAME_ANDRE_AGASSI);
+	}
 }

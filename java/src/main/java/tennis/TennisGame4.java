@@ -32,6 +32,9 @@ public class TennisGame4 implements TennisGame {
 	private Map<String, Integer> playerNameToScoreStringMap = new HashMap<String, Integer>();
 
 	public TennisGame4(String player1, String player2) {
+		if (null==player1) {
+			throw new GameConfigurationException("Players must have actual names");
+		}
 		if (player1.equals(player2)) {
 			throw new GameConfigurationException("Players must be unique");
 		}

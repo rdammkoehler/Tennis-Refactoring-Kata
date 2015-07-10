@@ -20,6 +20,10 @@ public class TennisGame4Test {
 		}
 	}
 	
+	private String scoreString() {
+		return game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString();
+	}
+	
 	@Before
 	public void beforeEach() {
 		game = new TennisGame4();
@@ -28,24 +32,25 @@ public class TennisGame4Test {
 	@Test
 	public void wonPointAddsPointToPlayerByName() {
 		addPointsToScore(1);
-		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Fifteen"));
+		assertThat(scoreString(), is("Fifteen"));
 	}
+
 
 	@Test
 	public void wonPointReturnsLoveForAPlayerWhoHasNotScored() {
-		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Love"));
+		assertThat(scoreString(), is("Love"));
 	}
 
 	@Test
 	public void playerWhoScoresTwiceHasThirtyPoints() {
 		addPointsToScore(2);
-		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Thirty"));
+		assertThat(scoreString(), is("Thirty"));
 	}
 
 
 	@Test
 	public void playerWhoScoresThreeHasFortyPoints() {
 		addPointsToScore(3);
-		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Forty"));
+		assertThat(scoreString(), is("Forty"));
 	}
 }

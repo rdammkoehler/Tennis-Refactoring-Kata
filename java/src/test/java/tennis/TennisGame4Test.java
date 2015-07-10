@@ -101,4 +101,11 @@ public class TennisGame4Test {
 		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
 		assertThat(game.getScore(), is("Fifteen-Love"));
 	}
+	
+	@Test
+	public void eachPlayerScoresAndScoreIsFifteenAll() {
+		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
+		addPointsToScore(PLAYERNAME_JOHN_MCENROE, 1);
+		assertThat(game.getScore(), is("Fifteen-All"));
+	}
 }

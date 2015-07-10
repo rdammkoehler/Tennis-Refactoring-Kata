@@ -5,9 +5,17 @@ import java.util.Map;
 
 public class TennisGame4 implements TennisGame {
 
+	class ScoringException extends RuntimeException {
+		private static final long serialVersionUID = 8990831494313911917L;
+		public ScoringException(String msg) { super(msg); }
+	}
+	
 	private Map<String, Integer> playerNameToScoreStringMap = new HashMap<String, Integer>();
 
 	public void wonPoint(String playerName) {
+		if (playerNameToScoreStringMap.size() == 2 && !playerNameToScoreStringMap.containsKey(playerName)) {
+			throw new ScoringException("Only two players may score in the same game");
+		}
 		if (playerNameToScoreStringMap.containsKey(playerName)) {
 			int currentScoreStringIndex = playerNameToScoreStringMap.get(playerName);
 			int newScoreStringIndex = currentScoreStringIndex + 1;

@@ -63,4 +63,11 @@ public class TennisGame4Test {
 		assertThat(scoreString(), is("Fifteen"));
 		assertThat(game.getCurrentPoints(PLAYERNAME_JOHN_MCENROE).toString(), is("Fifteen"));
 	}
+	
+	@Test(expected=TennisGame4.ScoringException.class)
+	public void threePlayersCannotPlay() {
+		game.wonPoint(PLAYERNAME_ANDRE_AGASSI);
+		game.wonPoint(PLAYERNAME_JOHN_MCENROE);
+		game.wonPoint("John Conners");
+	}
 }

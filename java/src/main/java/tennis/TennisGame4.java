@@ -10,4 +10,8 @@ public class TennisGame4 implements TennisGame {
 		return null;
 	}
 
+	Object getCurrentPoints(String string) {
+		return "Fifteen";
+	}
+
 }

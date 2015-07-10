@@ -76,4 +76,8 @@ public class TennisGame4Test {
 		addPointsToScore(PLAYERNAME_JOHN_CONNERS, 1);
 	}
 
+	@Test(expected=TennisGame4.GameConfigurationException.class)
+	public void playerNamesMustBeUnique() {
+		new TennisGame4(PLAYERNAME_ANDRE_AGASSI, PLAYERNAME_ANDRE_AGASSI);
+	}
 }

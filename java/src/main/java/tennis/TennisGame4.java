@@ -7,18 +7,34 @@ public class TennisGame4 implements TennisGame {
 
 	class ScoringException extends RuntimeException {
 		private static final long serialVersionUID = 8990831494313911917L;
-		public ScoringException(String msg) { super(msg); }
-	}
-	
-	class PlayerNotFoundException extends IllegalArgumentException {
-		public PlayerNotFoundException(String msg) { super(msg); }
 
-		private static final long serialVersionUID = 8464992528900598154L;
+		public ScoringException(String msg) {
+			super(msg);
+		}
 	}
-	
+
+	class PlayerNotFoundException extends IllegalArgumentException {
+		private static final long serialVersionUID = 8464992528900598154L;
+
+		public PlayerNotFoundException(String msg) {
+			super(msg);
+		}
+	}
+
+	class GameConfigurationException extends IllegalArgumentException {
+		private static final long serialVersionUID = 5030132112115654337L;
+
+		public GameConfigurationException(String msg) {
+			super(msg);
+		}
+	}
+
 	private Map<String, Integer> playerNameToScoreStringMap = new HashMap<String, Integer>();
 
 	public TennisGame4(String player1, String player2) {
+		if (player1.equals(player2)) {
+			throw new GameConfigurationException("Players must be unique");
+		}
 		playerNameToScoreStringMap.put(player1, 0);
 		playerNameToScoreStringMap.put(player2, 0);
 	}

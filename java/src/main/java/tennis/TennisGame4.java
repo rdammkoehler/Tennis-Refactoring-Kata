@@ -71,15 +71,16 @@ public class TennisGame4 implements TennisGame {
 
 	private String lookupScoreString(Integer scoreStringIndex) {
 		String[] scoreStrings = { "Love", "Fifteen", "Thirty", "Forty" };
-		return scoreStrings[scoreStringIndex];
+		return (scoreStringIndex < scoreStrings.length) ? scoreStrings[scoreStringIndex] : "Ad";
 	}
 
 	public String getScore() {
 		String scoreString;
 		if (getCurrentPoints(player1Key).equals(getCurrentPoints(player2Key))) {
-			scoreString = getCurrentPoints(player1Key) + "-All";
-			if (scoreString.equals("Forty-All")) {
+			if (playerNameToScoreStringMap.get(player1Key) > 2) {
 				scoreString = "Deuce";
+			} else {
+				scoreString = getCurrentPoints(player1Key) + "-All";
 			}
 		} else {
 			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);

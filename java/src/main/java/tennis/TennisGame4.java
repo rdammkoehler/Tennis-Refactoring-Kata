@@ -24,15 +24,12 @@ public class TennisGame4 implements TennisGame {
 	}
 
 	public void wonPoint(String playerName) {
-		if (playerNameToScoreStringMap.size() == 2 && !playerNameToScoreStringMap.containsKey(playerName)) {
+		if (!playerNameToScoreStringMap.containsKey(playerName)) {
 			throw new ScoringException("Only two players may score in the same game");
-		}
-		if (playerNameToScoreStringMap.containsKey(playerName)) {
+		} else {
 			int currentScoreStringIndex = playerNameToScoreStringMap.get(playerName);
 			int newScoreStringIndex = currentScoreStringIndex + 1;
 			playerNameToScoreStringMap.put(playerName, newScoreStringIndex);
-		} else {
-			playerNameToScoreStringMap.put(playerName, 1);
 		}
 	}
 

@@ -76,14 +76,18 @@ public class TennisGame4 implements TennisGame {
 
 	public String getScore() {
 		String scoreString;
-		if (getCurrentPoints(player1Key).equals(getCurrentPoints(player2Key))) {
-			if (playerNameToScoreStringMap.get(player1Key) > 2) {
-				scoreString = "Deuce";
-			} else {
-				scoreString = getCurrentPoints(player1Key) + "-All";
-			}
+		if (playerNameToScoreStringMap.get(player1Key) == 4 && playerNameToScoreStringMap.get(player2Key) < 3) {
+			scoreString = "Win for player1";
 		} else {
-			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
+			if (getCurrentPoints(player1Key).equals(getCurrentPoints(player2Key))) {
+				if (playerNameToScoreStringMap.get(player1Key) > 2) {
+					scoreString = "Deuce";
+				} else {
+					scoreString = getCurrentPoints(player1Key) + "-All";
+				}
+			} else {
+				scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
+			}
 		}
 		return scoreString;
 	}

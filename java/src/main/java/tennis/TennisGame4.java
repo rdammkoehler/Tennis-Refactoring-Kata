@@ -78,6 +78,9 @@ public class TennisGame4 implements TennisGame {
 		String scoreString;
 		if (getCurrentPoints(player1Key).equals(getCurrentPoints(player2Key))) {
 			scoreString = getCurrentPoints(player1Key) + "-All";
+			if (scoreString.equals("Forty-All")) {
+				scoreString = "Deuce";
+			}
 		} else {
 			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
 		}

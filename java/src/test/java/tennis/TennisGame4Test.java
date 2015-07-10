@@ -37,4 +37,12 @@ public class TennisGame4Test {
 		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Thirty"));
 	}
 
+
+	@Test
+	public void playerWhoScoresThreeHasFortyPoints() {
+		game.wonPoint(PLAYERNAME_ANDRE_AGASSI);
+		game.wonPoint(PLAYERNAME_ANDRE_AGASSI);
+		game.wonPoint(PLAYERNAME_ANDRE_AGASSI);
+		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Forty"));
+	}
 }

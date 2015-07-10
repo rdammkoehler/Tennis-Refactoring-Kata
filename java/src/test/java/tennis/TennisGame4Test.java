@@ -16,4 +16,10 @@ public class TennisGame4Test {
 		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Fifteen"));
 	}
 	
+	@Test
+	public void wonPointReturnsLoveForAPlayerWhoHasNotScored() {
+		TennisGame4 game = new TennisGame4();
+		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Love"));
+	}
+	
 }

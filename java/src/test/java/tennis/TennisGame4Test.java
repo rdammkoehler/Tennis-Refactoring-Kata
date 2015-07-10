@@ -10,6 +10,8 @@ import org.junit.Test;
 
 public class TennisGame4Test {
 
+	private static final String PLAYERNAME_JOHN_CONNERS = "John Conners";
+
 	private static final String PLAYERNAME_JOHN_MCENROE = "John McEnroe";
 
 	private static final String PLAYERNAME_ANDRE_AGASSI = "Andre Agassi";
@@ -44,7 +46,7 @@ public class TennisGame4Test {
 	
 	@Test(expected=TennisGame4.PlayerNotFoundException.class)
 	public void unknownPlayerScoreRequestGeneratesException() {
-		game.getCurrentPoints("John Conners");
+		game.getCurrentPoints(PLAYERNAME_JOHN_CONNERS);
 	}
 
 	@Test
@@ -71,7 +73,7 @@ public class TennisGame4Test {
 	public void threePlayersCannotPlay() {
 		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
 		addPointsToScore(PLAYERNAME_JOHN_MCENROE, 1);
-		addPointsToScore("John Conners", 1);
+		addPointsToScore(PLAYERNAME_JOHN_CONNERS, 1);
 	}
 
 }

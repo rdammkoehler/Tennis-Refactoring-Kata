@@ -77,6 +77,6 @@ public class TennisTest {
 	@Test
 	@Ignore
 	public void checkAllScoresTennisGame4() {
-		checkAllScores(new TennisGame4());
+		checkAllScores(new TennisGame4("Andre Agassi", "John McEnroe"));
 	}
 }

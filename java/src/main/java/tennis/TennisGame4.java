@@ -10,7 +10,18 @@ public class TennisGame4 implements TennisGame {
 		public ScoringException(String msg) { super(msg); }
 	}
 	
+	class PlayerNotFoundException extends IllegalArgumentException {
+		public PlayerNotFoundException(String msg) { super(msg); }
+
+		private static final long serialVersionUID = 8464992528900598154L;
+	}
+	
 	private Map<String, Integer> playerNameToScoreStringMap = new HashMap<String, Integer>();
+
+	public TennisGame4(String player1, String player2) {
+		playerNameToScoreStringMap.put(player1, 0);
+		playerNameToScoreStringMap.put(player2, 0);
+	}
 
 	public void wonPoint(String playerName) {
 		if (playerNameToScoreStringMap.size() == 2 && !playerNameToScoreStringMap.containsKey(playerName)) {
@@ -34,7 +45,7 @@ public class TennisGame4 implements TennisGame {
 		if (playerNameToScoreStringMap.containsKey(playerName)) {
 			scoreString = lookupScoreString(playerNameToScoreStringMap.get(playerName));
 		} else {
-			scoreString = "Love";
+			throw new PlayerNotFoundException(playerName + " is not part of this game.");
 		}
 		return scoreString;
 	}

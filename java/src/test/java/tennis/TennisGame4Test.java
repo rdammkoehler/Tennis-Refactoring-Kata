@@ -28,7 +28,7 @@ public class TennisGame4Test {
 
 	@Before
 	public void beforeEach() {
-		game = new TennisGame4();
+		game = new TennisGame4(PLAYERNAME_ANDRE_AGASSI, PLAYERNAME_JOHN_MCENROE);
 	}
 
 	@Test
@@ -40,6 +40,11 @@ public class TennisGame4Test {
 	@Test
 	public void wonPointReturnsLoveForAPlayerWhoHasNotScored() {
 		assertThat(scoreString(), is("Love"));
+	}
+	
+	@Test(expected=TennisGame4.PlayerNotFoundException.class)
+	public void unknownPlayerScoreRequestGeneratesException() {
+		game.getCurrentPoints("John Conners");
 	}
 
 	@Test

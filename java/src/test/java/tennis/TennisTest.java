@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -73,4 +74,9 @@ public class TennisTest {
 		checkAllScores(game);
 	}
 
+	@Test
+	@Ignore
+	public void checkAllScoresTennisGame4() {
+		checkAllScores(new TennisGame4());
+	}
 }

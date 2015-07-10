@@ -78,6 +78,8 @@ public class TennisGame4 implements TennisGame {
 		String scoreString;
 		if (playerNameToScoreStringMap.get(player1Key) == 4 && playerNameToScoreStringMap.get(player2Key) < 3) {
 			scoreString = "Win for player1";
+		} else if (playerNameToScoreStringMap.get(player2Key) == 4 && playerNameToScoreStringMap.get(player1Key) < 3) {
+			scoreString = "Win for player2";
 		} else {
 			if (getCurrentPoints(player1Key).equals(getCurrentPoints(player2Key))) {
 				if (playerNameToScoreStringMap.get(player1Key) > 2) {

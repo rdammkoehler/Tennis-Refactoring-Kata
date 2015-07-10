@@ -130,4 +130,11 @@ public class TennisGame4Test {
 		makeGameScore(AD, LOVE);
 		assertThat(game.getScore(), is("Win for player1"));
 	}
+
+	@Test
+	public void player2Wins4to0() {
+		makeGameScore(LOVE, AD);
+		assertThat(game.getScore(), is("Win for player2"));
+	}
+	
 }

@@ -10,10 +10,10 @@ import org.junit.Test;
 
 public class TennisGame4Test {
 
-	private static final int FORTY = 3;
-	private static final int THIRTY = 2;
 	private static final int LOVE = 0;
 	private static final int FIFTEEN = 1;
+	private static final int THIRTY = 2;
+	private static final int FORTY = 3;
 	private static final String PLAYERNAME_JOHN_CONNERS = "John Conners";
 	private static final String PLAYERNAME_JOHN_MCENROE = "John McEnroe";
 	private static final String PLAYERNAME_ANDRE_AGASSI = "Andre Agassi";

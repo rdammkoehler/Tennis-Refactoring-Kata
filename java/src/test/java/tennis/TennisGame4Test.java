@@ -95,4 +95,10 @@ public class TennisGame4Test {
 	public void gameStartsAtLoveAll() {
 		assertThat(game.getScore(), is("Love-All"));
 	}
+
+	@Test
+	public void player1ScoresOnceAndScoreIsFifteenLove() {
+		addPointsToScore(PLAYERNAME_ANDRE_AGASSI, 1);
+		assertThat(game.getScore(), is("Fifteen-Love"));
+	}
 }

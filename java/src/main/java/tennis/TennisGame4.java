@@ -30,11 +30,14 @@ public class TennisGame4 implements TennisGame {
 	}
 
 	private Map<String, Integer> playerNameToScoreStringMap = new HashMap<String, Integer>();
+	private String player1Key, player2Key;
 
 	public TennisGame4(String player1, String player2) {
 		validate(player1, player2);
 		playerNameToScoreStringMap.put(player1, 0);
 		playerNameToScoreStringMap.put(player2, 0);
+		player1Key = player1;
+		player2Key = player2;
 	}
 
 	private void validate(String player1, String player2) {
@@ -72,7 +75,10 @@ public class TennisGame4 implements TennisGame {
 	}
 
 	public String getScore() {
-		return "Love-All";
+		String scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
+		if (scoreString.equals("Love-Love"))
+			scoreString = "Love-All";
+		return scoreString;
 	}
 
 }

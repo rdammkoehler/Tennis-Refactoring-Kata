@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class TennisGame4Test {
 
-	private static final int GAME = 4;
+	private static final int AD = 4;
 	private static final int LOVE = 0;
 	private static final int FIFTEEN = 1;
 	private static final int THIRTY = 2;
@@ -121,7 +121,7 @@ public class TennisGame4Test {
 
 	@Test
 	public void addAddIsDeuce() {
-		makeGameScore(GAME, GAME);
+		makeGameScore(AD, AD);
 		assertThat(game.getScore(), is("Deuce"));
 	}
 }

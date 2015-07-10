@@ -56,10 +56,6 @@ public class TennisGame4 implements TennisGame {
 		}
 	}
 
-	public String getScore() {
-		return null;
-	}
-
 	Object getCurrentPoints(String playerName) {
 		String scoreString;
 		if (playerNameToScoreStringMap.containsKey(playerName)) {
@@ -73,6 +69,10 @@ public class TennisGame4 implements TennisGame {
 	private String lookupScoreString(Integer scoreStringIndex) {
 		String[] scoreStrings = { "Love", "Fifteen", "Thirty", "Forty" };
 		return scoreStrings[scoreStringIndex];
+	}
+
+	public String getScore() {
+		return null;
 	}
 
 }

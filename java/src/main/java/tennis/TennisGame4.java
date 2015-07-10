@@ -72,7 +72,7 @@ public class TennisGame4 implements TennisGame {
 	}
 
 	public String getScore() {
-		return null;
+		return "Love-All";
 	}
 
 }

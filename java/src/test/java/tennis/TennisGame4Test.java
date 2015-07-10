@@ -15,11 +15,19 @@ public class TennisGame4Test {
 		game.wonPoint(PLAYERNAME_ANDRE_AGASSI);
 		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Fifteen"));
 	}
-	
+
 	@Test
 	public void wonPointReturnsLoveForAPlayerWhoHasNotScored() {
 		TennisGame4 game = new TennisGame4();
 		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Love"));
 	}
-	
+
+	@Test
+	public void playerWhoScoresTwiceHasThirtyPoints() {
+		TennisGame4 game = new TennisGame4();
+		game.wonPoint(PLAYERNAME_ANDRE_AGASSI);
+		game.wonPoint(PLAYERNAME_ANDRE_AGASSI);
+		assertThat(game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString(), is("Thirty"));
+	}
+
 }

@@ -166,4 +166,10 @@ public class TennisGame4Test {
 		makeGameScore(AD + 2, AD + 3);
 		assertThat(game.getScore(), is("Advantage player2"));
 	}
+
+	@Test
+	public void playersAtThirtyFortyHaveNotWon() {
+		makeGameScore(THIRTY, FORTY);
+		assertThat(game.getScore(), is("Thirty-Forty"));
+	}
 }

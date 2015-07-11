@@ -76,18 +76,24 @@ public class TennisGame4 implements TennisGame {
 
 	public String getScore() {
 		String scoreString;
-		if (playerOneScore() == playerTwoScore()) {
+		if (tied()) {
 			if (playerOneScore() > 2) {
 				scoreString = "Deuce";
 			} else {
 				scoreString = getCurrentPoints(player1Key) + "-All";
 			}
-		} else if (playerOneScore() > 3 || playerTwoScore() > 3) {
+		} else if (playerOneScore() + playerTwoScore() > 3 && Math.abs(playerOneScore() - playerTwoScore()) > 1 ) {
+			scoreString = getWinAdScore("player1", playerOneScore(), playerTwoScore());
+		} else if (playerOneScore() + playerTwoScore() > 5 && Math.abs(playerOneScore() - playerTwoScore()) == 1 ) {
 			scoreString = getWinAdScore("player1", playerOneScore(), playerTwoScore());
 		} else {
 			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
 		}
 		return scoreString;
+	}
+
+	private boolean tied() {
+		return playerOneScore() == playerTwoScore();
 	}
 
 	private String getWinAdScore(String playerId, int leader, int other) {

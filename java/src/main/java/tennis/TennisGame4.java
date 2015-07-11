@@ -89,10 +89,13 @@ public class TennisGame4 implements TennisGame {
 			} else {
 				scoreString = "Win for player1";
 			}
-		} else if (playerTwoScore() > 3 && (playerTwoScore() - playerOneScore()) > 1) {
-			scoreString = "Win for player2";
-		} else if (playerTwoScore() > 3 && (playerTwoScore() - playerOneScore()) == 1) {
-			scoreString = "Advantage player2";
+		} else if (playerTwoScore() > 3 ) {
+			int lead = playerTwoScore() - playerOneScore();
+			if (lead == 1 ) {
+				scoreString = "Advantage player2";
+			} else {
+				scoreString = "Win for player2";
+			}
 		} else {
 			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
 		}

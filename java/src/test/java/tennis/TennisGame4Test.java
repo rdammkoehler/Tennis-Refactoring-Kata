@@ -160,4 +160,10 @@ public class TennisGame4Test {
 		makeGameScore(FORTY, AD);
 		assertThat(game.getScore(), is("Advantage player2"));
 	}
+
+	@Test
+	public void player2AdScoresBeyondGamePlus1Player2HasAdvantage() {
+		makeGameScore(AD + 2, AD + 3);
+		assertThat(game.getScore(), is("Advantage player2"));
+	}
 }

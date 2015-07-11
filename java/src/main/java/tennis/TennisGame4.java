@@ -97,8 +97,16 @@ public class TennisGame4 implements TennisGame {
 		int lead = leader - other;
 		if (lead == 1) {
 			scoreString = "Advantage " + playerId;
-		} else {
+		} else if (lead > 1) {
 			scoreString = "Win for " + playerId;
+		} else {
+			String otherPlayerId;
+			if (playerId.contains("1")) {
+				otherPlayerId = playerId.replace('1', '2');
+			} else {
+				otherPlayerId = playerId.replace('2', '1');
+			}
+			scoreString = getWinAdScore(otherPlayerId, other, leader);
 		}
 		return scoreString;
 	}

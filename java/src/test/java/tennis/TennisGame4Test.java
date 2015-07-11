@@ -178,4 +178,10 @@ public class TennisGame4Test {
 		makeGameScore(FORTY, FIFTEEN);
 		assertThat(game.getScore(), is("Forty-Fifteen"));
 	}
+
+	@Test
+	public void fifteenForty() {
+		makeGameScore(FIFTEEN, FORTY);
+		assertThat(game.getScore(), is("Fifteen-Forty"));
+	}
 }

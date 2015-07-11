@@ -82,10 +82,10 @@ public class TennisGame4 implements TennisGame {
 			} else {
 				scoreString = getCurrentPoints(player1Key) + "-All";
 			}
-		} else if (playerOneScore() + playerTwoScore() > 3 && Math.abs(playerOneScore() - playerTwoScore()) > 1 ) {
-			scoreString = getWinAdScore("player1", playerOneScore(), playerTwoScore());
-		} else if (playerOneScore() + playerTwoScore() > 5 && Math.abs(playerOneScore() - playerTwoScore()) == 1 ) {
-			scoreString = getWinAdScore("player1", playerOneScore(), playerTwoScore());
+		} else if (playerOneScore() + playerTwoScore() > 3 && Math.abs(playerOneScore() - playerTwoScore()) > 1) {
+			scoreString = getWinAdScore(leader());
+		} else if (playerOneScore() + playerTwoScore() > 5 && Math.abs(playerOneScore() - playerTwoScore()) == 1) {
+			scoreString = getWinAdScore(leader());
 		} else {
 			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
 		}
@@ -96,21 +96,22 @@ public class TennisGame4 implements TennisGame {
 		return playerOneScore() == playerTwoScore();
 	}
 
-	private String getWinAdScore(String playerId, int leader, int other) {
-		String scoreString;
+	private String leader() {
+		if (playerOneScore() > playerTwoScore()) {
+			return "player1";
+		}
+		return "player2";
+	}
+
+	private String getWinAdScore(String playerId) {
+		String scoreString = "";
+		int leader = (playerId.equals("player1")) ? playerOneScore() : playerTwoScore();
+		int other = (playerId.equals("player1")) ? playerTwoScore() : playerOneScore();
 		int lead = leader - other;
 		if (lead == 1) {
 			scoreString = "Advantage " + playerId;
-		} else if (lead > 1) {
-			scoreString = "Win for " + playerId;
 		} else {
-			String otherPlayerId;
-			if (playerId.contains("1")) {
-				otherPlayerId = playerId.replace('1', '2');
-			} else {
-				otherPlayerId = playerId.replace('2', '1');
-			}
-			scoreString = getWinAdScore(otherPlayerId, other, leader);
+			scoreString = "Win for " + playerId;
 		}
 		return scoreString;
 	}

@@ -83,9 +83,9 @@ public class TennisGame4 implements TennisGame {
 				scoreString = getCurrentPoints(player1Key) + "-All";
 			}
 		} else if (playerOneScore() + playerTwoScore() > 3 && Math.abs(playerOneScore() - playerTwoScore()) > 1) {
-			scoreString = getWinAdScore(leader());
+			scoreString = getWinScore(leader());
 		} else if (playerOneScore() + playerTwoScore() > 5 && Math.abs(playerOneScore() - playerTwoScore()) == 1) {
-			scoreString = getWinAdScore(leader());
+			scoreString = getAdScore(leader());
 		} else {
 			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
 		}
@@ -103,17 +103,12 @@ public class TennisGame4 implements TennisGame {
 		return "player2";
 	}
 
-	private String getWinAdScore(String playerId) {
-		String scoreString = "";
-		int leader = (playerId.equals("player1")) ? playerOneScore() : playerTwoScore();
-		int other = (playerId.equals("player1")) ? playerTwoScore() : playerOneScore();
-		int lead = leader - other;
-		if (lead == 1) {
-			scoreString = "Advantage " + playerId;
-		} else {
-			scoreString = "Win for " + playerId;
-		}
-		return scoreString;
+	private String getWinScore(String playerId) {
+		return "Win for " + playerId;
+	}
+
+	private String getAdScore(String playerId) {
+		return "Advantage " + playerId;
 	}
 
 	private Integer playerTwoScore() {

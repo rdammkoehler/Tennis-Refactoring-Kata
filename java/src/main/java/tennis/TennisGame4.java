@@ -80,20 +80,38 @@ public class TennisGame4 implements TennisGame {
 	public String getScore() {
 		String scoreString;
 		if (tied()) {
-			if (playerOneScore() > THIRTY) {
-				scoreString = "Deuce";
-			} else {
-				scoreString = getCurrentPoints(player1Key) + "-All";
-			}
-		} else if ((playerOneScore() > FORTY || playerTwoScore() > FORTY)
-				&& Math.abs(playerOneScore() - playerTwoScore()) > 1) {
+			scoreString = getTieScore();
+		} else if (won()) {
 			scoreString = getWinScore(leader());
-		} else if (playerOneScore() + playerTwoScore() > 5 && Math.abs(playerOneScore() - playerTwoScore()) == 1) {
+		} else if (advantage()) {
 			scoreString = getAdScore(leader());
 		} else {
-			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
+			scoreString = getGameScore();
 		}
 		return scoreString;
+	}
+
+	private String getGameScore() {
+		return getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
+	}
+
+	private String getTieScore() {
+		String scoreString;
+		if (playerOneScore() > THIRTY) {
+			scoreString = "Deuce";
+		} else {
+			scoreString = getCurrentPoints(player1Key) + "-All";
+		}
+		return scoreString;
+	}
+
+	private boolean advantage() {
+		return playerOneScore() + playerTwoScore() > 5 && Math.abs(playerOneScore() - playerTwoScore()) == 1;
+	}
+
+	private boolean won() {
+		return (playerOneScore() > FORTY || playerTwoScore() > FORTY)
+				&& Math.abs(playerOneScore() - playerTwoScore()) > 1;
 	}
 
 	private boolean tied() {

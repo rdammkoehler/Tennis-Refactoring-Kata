@@ -83,21 +83,27 @@ public class TennisGame4 implements TennisGame {
 				scoreString = getCurrentPoints(player1Key) + "-All";
 			}
 		} else if (playerOneScore() > 3) {
-			int lead = playerOneScore() - playerTwoScore();
-			if (lead == 1) {
-				scoreString = "Advantage player1";
-			} else {
-				scoreString = "Win for player1";
-			}
-		} else if (playerTwoScore() > 3 ) {
+			scoreString = getWinAdScore("player1", playerOneScore(), playerTwoScore());
+		} else if (playerTwoScore() > 3) {
 			int lead = playerTwoScore() - playerOneScore();
-			if (lead == 1 ) {
+			if (lead == 1) {
 				scoreString = "Advantage player2";
 			} else {
 				scoreString = "Win for player2";
 			}
 		} else {
 			scoreString = getCurrentPoints(player1Key) + "-" + getCurrentPoints(player2Key);
+		}
+		return scoreString;
+	}
+
+	private String getWinAdScore(String playerId, int leader, int other) {
+		String scoreString;
+		int lead = leader - other;
+		if (lead == 1) {
+			scoreString = "Advantage " + playerId;
+		} else {
+			scoreString = "Win for " + playerId;
 		}
 		return scoreString;
 	}

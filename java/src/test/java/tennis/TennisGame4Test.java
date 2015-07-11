@@ -149,4 +149,10 @@ public class TennisGame4Test {
 		assertThat(game.getScore(), is("Win for player2"));
 	}
 
+	@Test
+	public void player1AheadAfterFortyHasAdvantage() {
+		makeGameScore(AD, FORTY);
+		assertThat(game.getScore(), is("Advantage player1"));
+	}
+
 }

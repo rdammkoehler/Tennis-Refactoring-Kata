@@ -5,6 +5,10 @@ import java.util.Map;
 
 public class TennisGame4 implements TennisGame {
 
+	private static final String[] SCORE_STRINGS = { "Love", "Fifteen", "Thirty", "Forty" };
+	private static final int FORTY = 3;
+	private static final int THIRTY = 2;
+
 	class ScoringException extends RuntimeException {
 		private static final long serialVersionUID = 8990831494313911917L;
 
@@ -70,19 +74,19 @@ public class TennisGame4 implements TennisGame {
 	}
 
 	private String lookupScoreString(Integer scoreStringIndex) {
-		String[] scoreStrings = { "Love", "Fifteen", "Thirty", "Forty" };
-		return (scoreStringIndex < scoreStrings.length) ? scoreStrings[scoreStringIndex] : "Ad";
+		return (scoreStringIndex < SCORE_STRINGS.length) ? SCORE_STRINGS[scoreStringIndex] : "Ad";
 	}
 
 	public String getScore() {
 		String scoreString;
 		if (tied()) {
-			if (playerOneScore() > 2) {
+			if (playerOneScore() > THIRTY) {
 				scoreString = "Deuce";
 			} else {
 				scoreString = getCurrentPoints(player1Key) + "-All";
 			}
-		} else if (playerOneScore() + playerTwoScore() > 3 && Math.abs(playerOneScore() - playerTwoScore()) > 1) {
+		} else if ((playerOneScore() > FORTY || playerTwoScore() > FORTY)
+				&& Math.abs(playerOneScore() - playerTwoScore()) > 1) {
 			scoreString = getWinScore(leader());
 		} else if (playerOneScore() + playerTwoScore() > 5 && Math.abs(playerOneScore() - playerTwoScore()) == 1) {
 			scoreString = getAdScore(leader());

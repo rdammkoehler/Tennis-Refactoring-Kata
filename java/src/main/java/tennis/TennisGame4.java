@@ -77,6 +77,35 @@ public class TennisGame4 implements TennisGame {
 		return (scoreStringIndex < SCORE_STRINGS.length) ? SCORE_STRINGS[scoreStringIndex] : "Ad";
 	}
 
+	/**
+	 * p1+p2   | p1-p2   | state
+	 * ========+=========+========
+	 * 0       | 0       | love-all
+	 * 1       | 1       | fifteen-love
+	 * 1       | -1      | love-fifteen
+	 * 2       | 0       | fifteen-all
+	 * 2       | 2       | thirty-love
+	 * 2       | -2      | love-thirty
+	 * 
+	 * 3       | 0       | forty-love
+	 * 3       | 1       | thirty-fifteen
+	 * 3       | -1      | fifteen-thirty
+	 * 
+	 * 4       | 0       | thirty-all
+	 * 4       | 1       | thirty-fifteen
+	 * 4       | -1      | fifteen-thirty
+	 * 4       | 2       | thirty-love
+	 * 4       | -2      | love-thirty
+	 * 
+	 * 5       | 1       | Win for player1
+	 * 5       | -5
+	 * 
+	 * 6       | 0       | forty-all
+	 * 
+	 * 7
+	 * 
+	 * 8       | 0       | deuce
+	 */
 	public String getScore() {
 		String scoreString;
 		if (tied()) {

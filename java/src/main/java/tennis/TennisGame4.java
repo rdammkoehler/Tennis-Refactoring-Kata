@@ -97,10 +97,11 @@ public class TennisGame4 implements TennisGame {
 	 * 4       | 2       | thirty-love
 	 * 4       | -2      | love-thirty
 	 * 
-	 * 5       | 1       | Win for player1
-	 * 5       | -5
+	 * 5       | 0       | deuce
+	 * 5       | 1       | advantage player1
+	 * 5       | -1      | advantage player2 
 	 * 
-	 * 6       | 0       | forty-all
+	 * 6       | 0       | deuce
 	 * 
 	 * 7
 	 * 

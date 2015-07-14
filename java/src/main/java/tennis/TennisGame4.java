@@ -124,7 +124,7 @@ public class TennisGame4 implements TennisGame {
 	 * p1 > p2 && p1-p2 > 1        | Win for player 1
 	 * p2 < p1 && p1-p2 < -1       | Win for player 2
 	 */
-	public Map<Integer,Map<Integer,String>> foo() {
+	private static final Map<Integer,Map<Integer,String>> SCORE_TABLE = new HashMap<Integer,Map<Integer,String>>() { {
 		String[][] kk = { 
 				{ "empty", "empty", "empty", "empty", "Love-All", "empty", "empty", "empty", "empty", },										//0 
 				{ "empty", "empty", "empty", "Love-Fifteen", "empty", "Fifteen-Love", "empty", "empty", "empty", },								//1
@@ -135,15 +135,14 @@ public class TennisGame4 implements TennisGame {
 				{ "empty", "empty", "Win for player2", "empty", "Deuce", "empty", "Win for player1", "empty", "empty", },						//6
 				{ "empty", "empty", "empty", "Advantage player2", "Deuce", "Advantage player1", "empty", "empty", "empty", },					//7
 		};
-		Map<Integer,Map<Integer,String>> sm = new HashMap<Integer,Map<Integer,String>>();
 		for(int sum=0; sum<8;sum++) {
-			sm.put(sum, new HashMap<Integer,String>());
+			this.put(sum, new HashMap<Integer,String>());
 			for(int idx=0;idx<kk[sum].length;idx++) {
-				sm.get(sum).put(idx-4, kk[sum][idx]);
+				this.get(sum).put(idx-4, kk[sum][idx]);
 			}
 		}
-		return sm;
 	}
+	};
 	
 	public String getScore() {
 		String score;
@@ -157,7 +156,7 @@ public class TennisGame4 implements TennisGame {
 			score = dd[diff+2];
 		} else {
 			System.out.print(sum + " " + diff + " ");
-			score = foo().get(sum).get(diff);
+			score = SCORE_TABLE.get(sum).get(diff);
 			System.out.println(score);
 		}
 		return score;

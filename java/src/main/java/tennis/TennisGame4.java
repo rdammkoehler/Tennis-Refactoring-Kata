@@ -78,47 +78,100 @@ public class TennisGame4 implements TennisGame {
 	}
 
 	/**
-	 * p1+p2   | p1-p2   | state
-	 * ========+=========+========
-	 * 0       | 0       | love-all
-	 * 1       | 1       | fifteen-love
-	 * 1       | -1      | love-fifteen
-	 * 2       | 0       | fifteen-all
-	 * 2       | 2       | thirty-love
-	 * 2       | -2      | love-thirty
+	 * 0  Love
+	 * 1  Fifteen
+	 * 2  Thirty
+	 * 3  Forty
+	 * 4  Game/Ad
 	 * 
-	 * 3       | 0       | forty-love
-	 * 3       | 1       | thirty-fifteen
-	 * 3       | -1      | fifteen-thirty
+	 * p1 | p2 |p1+p2    | p1-p2   | state
+	 * ===+====+=========+=========+========
+	 * 0  | 0  | 0       | 0       | love-all
 	 * 
-	 * 4       | 0       | thirty-all
-	 * 4       | 1       | thirty-fifteen
-	 * 4       | -1      | fifteen-thirty
-	 * 4       | 2       | thirty-love
-	 * 4       | -2      | love-thirty
+	 * 1  | 0  | 1       | 1       | fifteen-love
+	 * 0  | 1  | 1       | -1      | love-fifteen
 	 * 
-	 * 5       | 0       | deuce
-	 * 5       | 1       | advantage player1
-	 * 5       | -1      | advantage player2 
+	 * 1  | 1  | 2       | 0       | fifteen-all
+	 * 2  | 0  | 2       | 2       | thirty-love
+	 * 0  | 2  | 2       | -2      | love-thirty
 	 * 
-	 * 6       | 0       | deuce
+	 * 0  | 3  | 3       | -3      | love-forty
+	 * 3  | 0  | 3       | 3       | forty-love
+	 * 2  | 1  | 3       | 1       | thirty-fifteen
+	 * 1  | 2  | 3       | -1      | fifteen-thirty
 	 * 
-	 * 7
+	 * 2  | 2  | 4       | 0       | thirty-all
+	 * 3  | 1  | 4       | 2       | forty-fifteen
+	 * 1  | 3  | 4       | -2      | fifteen-forty
+	 * 4  | 0  | 4       | 4       | win for player 1
+	 * 0  | 4  | 4       | -4      | win for player 2
 	 * 
-	 * 8       | 0       | deuce
+	 * 3  | 2  | 5       | 1       | forty-thirty
+	 * 2  | 3  | 5       | -1      | thirty-forty
+	 * 4  | 1  | 5       | 3       | win for player 1
+	 * 1  | 4  | 5       | -3      | win for player 2
+	 * 
+	 * 3  | 3  | 6       | 0       | Deuce
+	 * 4  | 2  | 6       | 2       | win for player 1
+	 * 2  | 4  | 6       | -2      | win for player 2
+	 * 
+	 * 4  | 3  | 7       | 1       | advantage player 1
+	 * 3  | 4  | 7       | -1      | advantage player 2
+	 * 
+	 * p1 == p2 && p1-p2 == 0      | Deuce
+	 * p1 > p2 && p1-p2 == 1       | Advantage player1
+	 * p1 < p2 && p1-p2 == -1      | Advantage player2
+	 * p1 > p2 && p1-p2 > 1        | Win for player 1
+	 * p2 < p1 && p1-p2 < -1       | Win for player 2
 	 */
-	public String getScore() {
-		String scoreString;
-		if (tied()) {
-			scoreString = getTieScore();
-		} else if (won()) {
-			scoreString = getWinScore(leader());
-		} else if (advantage()) {
-			scoreString = getAdScore(leader());
-		} else {
-			scoreString = getGameScore();
+	public Map<Integer,Map<Integer,String>> foo() {
+		String[][] kk = { 
+				{ "empty", "empty", "empty", "empty", "Love-All", "empty", "empty", "empty", "empty", },										//0 
+				{ "empty", "empty", "empty", "Love-Fifteen", "empty", "Fifteen-Love", "empty", "empty", "empty", },								//1
+				{ "empty", "empty", "Love-Thirty", "empty", "Fifteen-All", "empty", "Thirty-Love", "empty", "empty", },							//2
+				{ "empty", "Love-Forty", "empty", "Fifteen-Thirty", "empty", "Thirty-Fifteen", "empty", "Forty-Love", "empty", },				//3
+				{ "Win for player2", "empty", "Fifteen-Forty", "empty", "Thirty-All", "empty", "Forty-Fifteen", "empty", "Win for player1" },	//4
+				{ "empty", "Win for player2", "empty", "Thirty-Forty", "empty", "Forty-Thirty", "empty", "Win for player1", "empty", },			//5
+				{ "empty", "empty", "Win for player2", "empty", "Deuce", "empty", "Win for player1", "empty", "empty", },						//6
+				{ "empty", "empty", "empty", "Advantage player2", "Deuce", "Advantage player1", "empty", "empty", "empty", },					//7
+		};
+		Map<Integer,Map<Integer,String>> sm = new HashMap<Integer,Map<Integer,String>>();
+		for(int sum=0; sum<8;sum++) {
+			sm.put(sum, new HashMap<Integer,String>());
+			for(int idx=0;idx<kk[sum].length;idx++) {
+				sm.get(sum).put(idx-4, kk[sum][idx]);
+			}
 		}
-		return scoreString;
+		return sm;
+	}
+	
+	public String getScore() {
+		String score;
+		Integer p1s = playerNameToScoreStringMap.get(player1Key);
+		Integer p2s = playerNameToScoreStringMap.get(player2Key);
+		System.out.print(p1s + " " + p2s + " ");
+		int sum = p1s+p2s;
+		int diff = p1s-p2s;
+		if ( sum > 7 ) {
+			String[] dd =  { "Win for player2", "Advantage player2", "Deuce", "Advantage player1", "Win for player1" };
+			score = dd[diff+2];
+		} else {
+			System.out.print(sum + " " + diff + " ");
+			score = foo().get(sum).get(diff);
+			System.out.println(score);
+		}
+		return score;
+//		String scoreString;
+//		if (tied()) {
+//			scoreString = getTieScore();
+//		} else if (won()) {
+//			scoreString = getWinScore(leader());
+//		} else if (advantage()) {
+//			scoreString = getAdScore(leader());
+//		} else {
+//			scoreString = getGameScore();
+//		}
+//		return scoreString;
 	}
 
 	private String getGameScore() {

@@ -32,48 +32,9 @@ public class TennisGame4Test {
 		}
 	}
 
-	private String scoreString() {
-		return game.getCurrentPoints(PLAYERNAME_ANDRE_AGASSI).toString();
-	}
-
 	@Before
 	public void beforeEach() {
 		game = new TennisGame4(PLAYERNAME_ANDRE_AGASSI, PLAYERNAME_JOHN_MCENROE);
-	}
-
-	@Test
-	public void wonPointAddsPointToPlayerByName() {
-		makeGameScore(FIFTEEN, LOVE);
-		assertThat(scoreString(), is("Fifteen"));
-	}
-
-	@Test
-	public void wonPointReturnsLoveForAPlayerWhoHasNotScored() {
-		assertThat(scoreString(), is("Love"));
-	}
-
-	@Test(expected = TennisGame4.PlayerNotFoundException.class)
-	public void unknownPlayerScoreRequestGeneratesException() {
-		game.getCurrentPoints(PLAYERNAME_JOHN_CONNERS);
-	}
-
-	@Test
-	public void playerWhoScoresTwiceHasThirtyPoints() {
-		makeGameScore(THIRTY, LOVE);
-		assertThat(scoreString(), is("Thirty"));
-	}
-
-	@Test
-	public void playerWhoScoresThreeHasFortyPoints() {
-		makeGameScore(FORTY, LOVE);
-		assertThat(scoreString(), is("Forty"));
-	}
-
-	@Test
-	public void moreThanOnePlayerCanScore() {
-		makeGameScore(FIFTEEN, FIFTEEN);
-		assertThat(scoreString(), is("Fifteen"));
-		assertThat(game.getCurrentPoints(PLAYERNAME_JOHN_MCENROE).toString(), is("Fifteen"));
 	}
 
 	@Test(expected = TennisGame4.ScoringException.class)

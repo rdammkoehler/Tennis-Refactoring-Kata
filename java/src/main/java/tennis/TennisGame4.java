@@ -146,18 +146,13 @@ public class TennisGame4 implements TennisGame {
 	
 	public String getScore() {
 		String score;
-		Integer p1s = playerNameToScoreStringMap.get(player1Key);
-		Integer p2s = playerNameToScoreStringMap.get(player2Key);
-		System.out.print(p1s + " " + p2s + " ");
-		int sum = p1s+p2s;
-		int diff = p1s-p2s;
+		int sum = getSumOfPlayerScores();
+		int diff = getDifferenceOfPlayerScores();
 		if ( sum > 7 ) {
 			String[] dd =  { "Win for player2", "Advantage player2", "Deuce", "Advantage player1", "Win for player1" };
 			score = dd[diff+2];
 		} else {
-			System.out.print(sum + " " + diff + " ");
 			score = SCORE_TABLE.get(sum).get(diff);
-			System.out.println(score);
 		}
 		return score;
 //		String scoreString;
@@ -171,6 +166,16 @@ public class TennisGame4 implements TennisGame {
 //			scoreString = getGameScore();
 //		}
 //		return scoreString;
+	}
+
+	private int getDifferenceOfPlayerScores() {
+		int diff = playerNameToScoreStringMap.get(player1Key)-playerNameToScoreStringMap.get(player2Key);
+		return diff;
+	}
+
+	private int getSumOfPlayerScores() {
+		int sum = playerNameToScoreStringMap.get(player1Key)+playerNameToScoreStringMap.get(player2Key);
+		return sum;
 	}
 
 	private String getGameScore() {

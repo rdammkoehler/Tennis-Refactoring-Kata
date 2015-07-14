@@ -2,14 +2,6 @@ package tennis;
 
 public class TennisGame4 implements TennisGame {
 
-	class ScoringException extends RuntimeException {
-		private static final long serialVersionUID = 8990831494313911917L;
-
-		public ScoringException(String msg) {
-			super(msg);
-		}
-	}
-
 	class PlayerNotFoundException extends IllegalArgumentException {
 		private static final long serialVersionUID = 8464992528900598154L;
 
@@ -26,15 +18,11 @@ public class TennisGame4 implements TennisGame {
 		}
 	}
 
-	private int player1score, player2score;
-	private String player1Name, player2Name;
+	private ScoreKeeper scoreKeeper;
 
 	public TennisGame4(String player1, String player2) {
 		validate(player1, player2);
-		player1Name = player1;
-		player1score = 0;
-		player2Name = player2;
-		player2score = 0;
+		scoreKeeper = new ScoreKeeper(player1, player2);
 	}
 
 	private void validate(String player1, String player2) {
@@ -45,19 +33,12 @@ public class TennisGame4 implements TennisGame {
 			throw new GameConfigurationException("Players must be unique");
 		}
 	}
-
+	
 	public void wonPoint(String playerName) {
-		if (playerName.equals(player1Name)) {
-			player1score++;
-		} else if (playerName.equals(player2Name)) {
-			player2score++;
-		} else {
-			throw new ScoringException("Only two players may score in the same game");
-		}
+		scoreKeeper.addPointTo(playerName);
 	}
 
 	public String getScore() {
-		return new TennisScoreTranslator().translate(player1score, player2score);
-		
+		return new TennisScoreTranslator().translate(scoreKeeper.getPlayer1Score(), scoreKeeper.getPlayer2Score());
 	}
 }

@@ -37,7 +37,7 @@ public class TennisGame4Test {
 		game = new TennisGame4(PLAYERNAME_ANDRE_AGASSI, PLAYERNAME_JOHN_MCENROE);
 	}
 
-	@Test(expected = TennisGame4.ScoringException.class)
+	@Test(expected = ScoreKeeper.ScoringException.class)
 	public void threePlayersCannotPlay() {
 		addPointsToPlayersScore(PLAYERNAME_JOHN_CONNERS, 1);
 	}

@@ -5,6 +5,12 @@ import java.util.Map;
 
 public class TennisScoreTranslator {
 
+	private static final int CENTER_OFFSET_TO_ZERO_SCORE_TABLE = 4;
+
+	private static final int MIN_POINTS_FOR_WINNABLE_GAME = 7;
+
+	private static final int CENTER_OFFSET_TO_ZERO_BEYOND_DEUCE = 2;
+
 	private static final Map<Integer, Map<Integer, String>> SCORE_TABLE = new HashMap<Integer, Map<Integer, String>>() {
 		private static final long serialVersionUID = 1L;
 
@@ -22,7 +28,7 @@ public class TennisScoreTranslator {
 			for (int sum = 0; sum < 8; sum++) {
 				this.put(sum, new HashMap<Integer, String>());
 				for (int idx = 0; idx < basic_scores[sum].length; idx++) {
-					this.get(sum).put(idx - 4, basic_scores[sum][idx]);
+					this.get(sum).put(idx - CENTER_OFFSET_TO_ZERO_SCORE_TABLE, basic_scores[sum][idx]);
 				}
 			}
 		}
@@ -35,8 +41,8 @@ public class TennisScoreTranslator {
 		String score;
 		int sum = player1score+player2score;
 		int diff = player1score-player2score;
-		if (sum > 7) {
-			score = SCORES_BEYOND_DEUCE[diff + 2];
+		if (sum > MIN_POINTS_FOR_WINNABLE_GAME) {
+			score = SCORES_BEYOND_DEUCE[diff + CENTER_OFFSET_TO_ZERO_BEYOND_DEUCE];
 		} else {
 			score = SCORE_TABLE.get(sum).get(diff);
 		}
